@@ -7,7 +7,7 @@ class Event(models.Model):
     event_end = models.DateTimeField(auto_now_add=False, auto_now=False)
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
     def __str__(self):
-        return self.name
+        return self.title

@@ -1,3 +1,11 @@
 from django.test import TestCase
+from timeapp.models import Event
 
-# Create your tests here.
+
+class EventTestCase(TestCase):
+
+    def test_string_representation(self):
+        expected = "This is a Title"
+        p1 = Event(title=expected)
+        actual = str(p1)
+        self.assertEqual(expected, actual)
