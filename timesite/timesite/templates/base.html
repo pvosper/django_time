@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html>
+
+
+    <head>
+        <title>CMSBlog</title>
+        <link type="text/css" rel="stylesheet" href={% static 'cmsblog.css' %}
+    </head>
+
+
+    <body>
+        <div class="leftbox">
+            <p>  </p>
+            {% comment %} There needs to be a bit of whitespace here {% endcomment %}
+        </div>
+        <div class="centerbox">
+            <div id="header">
+                <ul id="control-bar">
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}<a href="{% url 'admin:index' %}">Admin</a>{% endif %}
+                        <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </ul>
+                <div class="titlebox">
+					<p>A CMS Project in Django</p>
+				</div>
+				<div class="navbox">
+                    <a class="navbox" href="/">Home&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'event_index' %}">Event&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'talk_index' %}">Talk&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'speaker_index' %}">Speaker&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'venue_index' %}">Venue&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'post_index' %}">Blog Posts</a>
+				</div>
+            </div>
+            <div id="container">
+                <div id="content">
+                    {% block content %}
+                        [content will go here]
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+</html>

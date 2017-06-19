@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from timeapp.views import event_index, event_detail, event_edit
+
 
 urlpatterns = [
+    url(r'^', include('timeapp.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$',
+        login,
+        {'template_name': 'login.html'},
+        name="login"),
+    url(r'^logout/$',
+        logout,
+        {'next_page': '/'},
+        name="logout"),
+
 ]
