@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Calendar</h1>
+    <hr>
+    <h2>Current Event</h2>
+    <h1><a href="{% url 'event_detail' current_event.pk %}">{{ current_event }}</a></h1>
+    <p>{{ current_event.event_start }} - {{ current_event.event_end|time }}</p>
+    <p>{{ current_event.venue }}: {{ current_event.venue.address }}</p>
+    <h2>The Talks</h2>
+        {% for talk in current_event.talks.all %}
+            <h3><a href="{%  url 'talk_detail' talk.pk %}">{{ talk }}</a></h3>
+            <p>{{ talk.speaker }}</p>
+        {% endfor %}
+    <hr>
+    <h2>Upcoming Events</h2>
+    <h1><a href="{% url 'event_detail' next_event.pk %}">{{ next_event }}</a></h1>
+    <p>{{ next_event.event_start }} - {{ next_event.event_end|time }}</p>
+    <p>{{ next_event.venue }}: {{ next_event.venue.address }}</p>
+    <h2>The Talks</h2>
+        {% for talk in next_event.talks.all %}
+            <h3><a href="{%  url 'talk_detail' talk.pk %}">{{ talk }}</a></h3>
+            <p>{{ talk.speaker }}</p>
+        {% endfor %}
+{% endblock %}

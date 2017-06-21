@@ -1,6 +1,6 @@
 from django.conf.urls import url
 # from cmsblog.views import stub_view
-from cmsblog.views import *
+from timeapp.views import site_index, event_index, event_detail, event_edit
 
 
 urlpatterns = [
