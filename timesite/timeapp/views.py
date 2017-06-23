@@ -4,7 +4,6 @@ from timeapp.models import Event
 
 def site_index(request):
     """Home page - Calendar"""
-    # RuntimeWarning: naive datetime while time zone support is active
     events = Event.objects.all()
     context = {'events': events}
     return render(request, 'site_index.html', context)

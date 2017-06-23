@@ -6,7 +6,7 @@
 
     <head>
         <title>CMSBlog</title>
-        <link type="text/css" rel="stylesheet" href={% static 'cmsblog.css' %}
+        <link type="text/css" rel="stylesheet" href={% static 'timeapp.css' %}
     </head>
 
 
@@ -31,10 +31,6 @@
 				<div class="navbox">
                     <a class="navbox" href="/">Home&nbsp;&middot;</a>
                     <a class="navbox" href="{% url 'event_index' %}">Event&nbsp;&middot;</a>
-                    <a class="navbox" href="{% url 'talk_index' %}">Talk&nbsp;&middot;</a>
-                    <a class="navbox" href="{% url 'speaker_index' %}">Speaker&nbsp;&middot;</a>
-                    <a class="navbox" href="{% url 'venue_index' %}">Venue&nbsp;&middot;</a>
-                    <a class="navbox" href="{% url 'post_index' %}">Blog Posts</a>
 				</div>
             </div>
             <div id="container">
