@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from timeapp.models import Event
+from timeapp.forms import EventForm
 
 
 def site_index(request):

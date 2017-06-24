@@ -1,14 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ event }}</h1>
-    <p>{{ event.event_start }} - {{ event.event_end|time }}</p>
-    <p>{{ event.venue }}: {{ event.venue.address }}</p>
-    <h2>The Talks</h2>
-        {% for talk in event.talks.all %}
-            <h3>{{ talk }}</h3>
-            <p>{{ talk.abstract }}</p>
-            <p>{{ talk.speaker }}</p>
-        {% endfor %}
+    <h1><a href="{% url 'event_edit' event.pk %}">{{ event }}</a></h1>
+    <p>{{ event.description }}</p>
+    <p>{{ event.event_time }}</p>
     <a class="btn btn-default" href="{% url 'event_edit' pk=event.pk %}">Edit</a></a>
 {% endblock %}

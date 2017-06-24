@@ -5,7 +5,7 @@
 
 
     <head>
-        <title>CMSBlog</title>
+        <title>TimeApp</title>
         <link type="text/css" rel="stylesheet" href={% static 'timeapp.css' %}
     </head>
 
@@ -17,20 +17,11 @@
         </div>
         <div class="centerbox">
             <div id="header">
-                <ul id="control-bar">
-                    {% if user.is_authenticated %}
-                        {% if user.is_staff %}<a href="{% url 'admin:index' %}">Admin</a>{% endif %}
-                        <a href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                        <a href="{% url 'login' %}">Login</a>
-                    {% endif %}
-                </ul>
                 <div class="titlebox">
-					<p>A CMS Project in Django</p>
+					<p>Django Time</p>
 				</div>
 				<div class="navbox">
-                    <a class="navbox" href="/">Home&nbsp;&middot;</a>
-                    <a class="navbox" href="{% url 'event_index' %}">Event&nbsp;&middot;</a>
+                    <a class="navbox" href="/">Home</a>
 				</div>
             </div>
             <div id="container">

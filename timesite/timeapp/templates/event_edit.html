@@ -5,8 +5,8 @@
     <form method="POST" class="event-form">{% csrf_token %}
         {# form.as_p #}
         <p>{{ form.title }}</p>
-        <p>{{ form.event_start }}</p>
-        <p>{{ form.event_end }}</p>
+        <p>{{ form.description }}</p>
+        <p>{{ form.event_time }}</p>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}
