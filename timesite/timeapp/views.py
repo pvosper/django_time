@@ -45,3 +45,19 @@ def event_edit(request, pk):
     else:
         form = EventForm(instance=event)
     return render(request, 'event_edit.html', {'form': form})
+
+def event_new(request):
+    """Edit Event"""
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            # save form
+            event = form.save(commit=False)
+            event.save()
+            # then create site_index
+            events = Event.objects.all()
+            context = {'events': events}
+            return render(request, 'site_index.html', context)
+    else:
+        form = EventForm()
+    return render(request, 'event_edit.html', {'form': form})
