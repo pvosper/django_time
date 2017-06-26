@@ -61,3 +61,9 @@ def event_new(request):
     else:
         form = EventForm()
     return render(request, 'event_edit.html', {'form': form})
+
+def meta_detail(request):
+    """Display META values"""
+    values = request.META.items()
+    values.sort()
+    return render(request, 'meta_detail.html', {'values': values})

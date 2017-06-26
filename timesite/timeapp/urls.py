@@ -3,7 +3,8 @@ from timeapp.views import site_index,\
     event_index,\
     event_detail,\
     event_edit,\
-    event_new
+    event_new,\
+    meta_detail
 
 
 urlpatterns = [
@@ -22,5 +23,8 @@ urlpatterns = [
     url(r'^event/new/$',  # 'event/new/'
         event_new,
         name='event_new'),
+    url(r'^meta/$',  # 'meta/'
+        meta_detail,
+        name='meta_detail'),
 
 ]
