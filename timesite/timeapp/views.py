@@ -65,5 +65,6 @@ def event_new(request):
 def meta_detail(request):
     """Display META values"""
     values = request.META.items()
-    values.sort()
+    # values.sort()
+    # TODO create list of formatted string to render instead
     return render(request, 'meta_detail.html', {'values': values})
