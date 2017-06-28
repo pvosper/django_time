@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Request META</h1>
-    {% for value in values %}
-        <p>{{ value }}</p>
+    {% for item in meta_items %}
+        <p>{{ item }}</p>
     {% endfor %}
 {% endblock %}

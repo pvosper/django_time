@@ -2,7 +2,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from timeapp.models import Event
 from timeapp.forms import EventForm
+import logging
 
+# create logger with module name
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+# create file handler which logs even debug messages
+log_file_name = __name__ + '.log'
+fh = logging.FileHandler(log_file_name)
+fh.setLevel(logging.DEBUG)
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+# add the handlers to the logger
+logger.addHandler(fh)
 
 def site_index(request):
     """Home page - Calendar"""
@@ -65,6 +78,8 @@ def event_new(request):
 def meta_detail(request):
     """Display META values"""
     values = request.META.items()
-    # values.sort()
-    # TODO create list of formatted string to render instead
-    return render(request, 'meta_detail.html', {'values': values})
+    # create list of formatted strings
+    meta_items = []
+    for value in values:
+        meta_items.append("{}: {}".format(value[0], value[1]))
+    return render(request, 'meta_detail.html', {'meta_items': meta_items})
