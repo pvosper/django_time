@@ -17,6 +17,19 @@ fh.setFormatter(formatter)
 # add the handlers to the logger
 logger.addHandler(fh)
 
+import pytz
+
+from django.utils import timezone
+from django.utils.deprecation import MiddlewareMixin
+
+class TimezoneMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        tzname = request.session.get('django_timezone')
+        if tzname:
+            timezone.activate(pytz.timezone(tzname))
+        else:
+            timezone.deactivate()
+
 def site_index(request):
     """Home page - Calendar"""
     events = Event.objects.all()
@@ -79,10 +92,6 @@ def meta_detail(request):
     """Display META values"""
     # path get_host get_full_path is_secure
     values = request.META.items()
-    logger.info('request.path(): %s', request.path)
-    logger.info('request.get_host(): %s', request.get_host())
-    logger.info('request.get_full_path(): %s', request.get_full_path())
-    logger.info('request.is_secure(): %s', request.is_secure())
     # create list of formatted strings
     meta_items = []
     meta_items.append("{}: {}".format('request.path', request.path))
@@ -92,3 +101,12 @@ def meta_detail(request):
     for value in values:
         meta_items.append("{}: {}".format(value[0], value[1]))
     return render(request, 'meta_detail.html', {'meta_items': meta_items})
+
+from django.shortcuts import redirect, render
+
+def set_timezone(request):
+    if request.method == 'POST':
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
+    else:
+        return render(request, 'set_timezone.html', {'timezones': pytz.common_timezones})

@@ -4,7 +4,8 @@ from timeapp.views import site_index,\
     event_detail,\
     event_edit,\
     event_new,\
-    meta_detail
+    meta_detail,\
+    set_timezone
 
 
 urlpatterns = [
@@ -26,5 +27,8 @@ urlpatterns = [
     url(r'^meta/$',  # 'meta/'
         meta_detail,
         name='meta_detail'),
+    url(r'^timezone/$',  # 'timezone/'
+        set_timezone,
+        name='set_timezone'),
 
 ]
