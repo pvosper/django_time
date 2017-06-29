@@ -77,9 +77,18 @@ def event_new(request):
 
 def meta_detail(request):
     """Display META values"""
+    # path get_host get_full_path is_secure
     values = request.META.items()
+    logger.info('request.path(): %s', request.path)
+    logger.info('request.get_host(): %s', request.get_host())
+    logger.info('request.get_full_path(): %s', request.get_full_path())
+    logger.info('request.is_secure(): %s', request.is_secure())
     # create list of formatted strings
     meta_items = []
+    meta_items.append("{}: {}".format('request.path', request.path))
+    meta_items.append("{}: {}".format('request.get_host()', request.get_host()))
+    meta_items.append("{}: {}".format('request.get_full_path()', request.get_full_path()))
+    meta_items.append("{}: {}".format('request.is_secure()', request.is_secure()))
     for value in values:
         meta_items.append("{}: {}".format(value[0], value[1]))
     return render(request, 'meta_detail.html', {'meta_items': meta_items})
